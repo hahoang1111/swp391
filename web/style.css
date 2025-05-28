@@ -1,0 +1,156 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 27, 2025, 1:28:28 AM
+    Author     : The Shuyy
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f8f8f8;
+}
+
+.top-bar {
+  background: #eee;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.navbar {
+  background: white;
+  padding: 10px 20px;
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+main {
+  padding: 20px;
+}
+
+.breadcrumb {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.profile-container {
+  display: flex;
+  gap: 20px;
+}
+
+.sidebar {
+  background: #eee;
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #aaa;
+}
+
+.change-avatar-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.change-avatar-btn:hover {
+  background-color: #333;
+}
+
+.sidebar-btn {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  background: #ddd;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.profile-form {
+  background: #eee;
+  padding: 20px;
+  flex: 1;
+  border-radius: 20px;
+}
+
+.profile-form h3 {
+  background: #555;
+  color: white;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.profile-form form label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  height: 80px;
+}
+
+.buttons {
+  margin-top: 20px;
+}
+
+.save-btn {
+  background: orange;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background: #555;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
