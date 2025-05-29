@@ -151,7 +151,7 @@
                     <!-- Form -->
                     <div class="card">
                         <div class="card-body">
-                            <form action="${pageContext.request.contextPath}/admin/blog" method="post" id="blogForm">
+                            <form action="${pageContext.request.contextPath}/admin/blog" method="post" id="blogForm" enctype="multipart/form-data">
                                 <input type="hidden" name="action" value="${empty blog ? 'save' : 'update'}">
                                 <c:if test="${not empty blog}">
                                     <input type="hidden" name="blogId" value="${blog.blogId}">
@@ -182,7 +182,7 @@
                                     <div class="col-md-4">
                                         <!-- Image Upload -->
                                         <div class="mb-4">
-                                            <label for="image" class="form-label">
+                                            <label for="imageFile" class="form-label">
                                                 <i class="fas fa-image text-primary"></i> Featured Image
                                             </label>
                                             
@@ -204,7 +204,7 @@
                                                 </div>
                                             </div>
                                             
-                                            <input type="file" id="imageFile" accept="image/*" style="display: none;">
+                                            <input type="file" id="imageFile" name="imageFile" accept="image/*" class="form-control mt-2">
                                             <input type="hidden" name="image" id="image" value="${blog.image}">
                                             
                                             <div class="mt-2">
@@ -311,9 +311,6 @@
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#imagePreview').html('<img src="' + e.target.result + '" id="previewImg" alt="Preview">');
-                        // In a real application, you would upload the file to server here
-                        // For now, we'll just store the data URL
-                        $('#image').val('assets/images/blog/uploaded/' + file.name);
                     };
                     reader.readAsDataURL(file);
                 }

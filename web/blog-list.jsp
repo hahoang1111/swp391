@@ -1,7 +1,7 @@
 <%-- 
     Document   : blog-list
     Created on : May 26, 2025, 11:54:28 PM
-    Author     : TuanBM
+    Author     : Lom
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -260,7 +260,7 @@
                                                     <div class="post action-card col-xl-6 col-lg-6 col-md-12 col-xs-12 m-b40">
                                                         <div class="recent-news">
                                                             <div class="action-box">
-                                                                <img src="${not empty blog.image ? blog.image : 'assets/images/blog/default/thum1.jpg'}" alt="${blog.title}">
+                                                                <img src="${pageContext.request.contextPath}/${not empty blog.image ? blog.image : 'assets/images/blog/default/thum1.jpg'}" alt="${blog.title}">
                                                             </div>
                                                             <div class="info-bx">
                                                                 <ul class="media-post">
@@ -349,7 +349,7 @@
                                                 <c:forEach var="recentBlog" items="${recentBlogs}">
                                                     <div class="widget-post clearfix">
                                                         <div class="ttr-post-media"> 
-                                                            <img src="${not empty recentBlog.image ? recentBlog.image : 'assets/images/blog/default/thum1.jpg'}" width="200" height="143" alt="${recentBlog.title}"> 
+                                                            <img src="${pageContext.request.contextPath}/${not empty recentBlog.image ? recentBlog.image : 'assets/images/blog/default/thum1.jpg'}" width="200" height="143" alt="${recentBlog.title}"> 
                                                         </div>
                                                         <div class="ttr-post-info">
                                                             <div class="ttr-post-header">

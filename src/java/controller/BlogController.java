@@ -2,18 +2,26 @@ package controller;
 
 import dao.BlogDAO;
 import model.Blog;
+import utils.FileUploadUtil;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
 @WebServlet("/admin/blog")
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024, // 1 MB
+    maxFileSize = 1024 * 1024 * 10,  // 10 MB
+    maxRequestSize = 1024 * 1024 * 50 // 50 MB
+)
 public class BlogController extends HttpServlet {
     private BlogDAO blogDAO;
 
@@ -111,13 +119,19 @@ public class BlogController extends HttpServlet {
         
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        String image = request.getParameter("image");
+        String imageUrl = request.getParameter("image");
         boolean isActive = request.getParameter("isActive") != null;
+        
+        // Handle file upload if present
+        Part filePart = request.getPart("imageFile");
+        if (filePart != null && filePart.getSize() > 0) {
+            imageUrl = FileUploadUtil.uploadBlogImage(filePart, getServletContext());
+        }
         
         Blog blog = new Blog();
         blog.setTitle(title);
         blog.setContent(content);
-        blog.setImage(image);
+        blog.setImage(imageUrl);
         blog.setActive(isActive);
         blog.setCreatedDate(LocalDate.now());
         blog.setCreatedBy(1); // Default user ID - có thể thay đổi khi có authentication
@@ -139,14 +153,20 @@ public class BlogController extends HttpServlet {
         int blogId = Integer.parseInt(request.getParameter("blogId"));
         String title = request.getParameter("title");
         String content = request.getParameter("content");
-        String image = request.getParameter("image");
+        String imageUrl = request.getParameter("image");
         boolean isActive = request.getParameter("isActive") != null;
 
+        // Handle file upload if present
+        Part filePart = request.getPart("imageFile");
+        if (filePart != null && filePart.getSize() > 0) {
+            imageUrl = FileUploadUtil.uploadBlogImage(filePart, getServletContext());
+        }
+        
         Blog blog = new Blog();
         blog.setBlogId(blogId);
         blog.setTitle(title);
         blog.setContent(content);
-        blog.setImage(image);
+        blog.setImage(imageUrl);
         blog.setActive(isActive);
 
         if (blogDAO.updateBlog(blog)) {
