@@ -1,7 +1,7 @@
 <%-- 
     Document   : blog-list
     Created on : May 26, 2025, 11:54:28 PM
-    Author     : Lom
+    Author     : TuanBM
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
