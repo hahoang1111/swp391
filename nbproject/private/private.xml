@@ -3,18 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/entity/UserAnswers.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/controller/ProfileServlet.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/web/style.css</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/service/UserDAO.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/entity/Users.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/web/assets/css/typography.css</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/controller/loginAccount.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/controller/UploadServlet.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/web/admin/assets/css/typography.css</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/src/java/ulti/DBContext.java</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/web/profile.jsp</file>
-            <file>file:/C:/Users/kienb/OneDrive/Documents/NetBeansProjects/QuizPractice/web/assets/css/style.css</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/service/CourseDAO.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/entity/Subjects.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/controller/HomeServlet.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/service/CategoryDAO.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/controller/loginAccount.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/forgot%20password.jsp</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/profile.jsp</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/controller/ProfileServlet.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/controller/RegisterServlet.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/courses.jsp</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/login.jsp</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/web/index.html</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/controller/UploadServlet.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/service/UserDAO.java</file>
+            <file>file:/C:/Users/kienb/OneDrive/Máy%20tính/swp391/src/java/ulti/Paging.java</file>
         </group>
     </open-files>
 </project-private>

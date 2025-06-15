@@ -23,8 +23,9 @@ public class Subjects implements Serializable {
     private Boolean isActive;
    
     private String subjectImage;
-   
-   
+    
+    private Long price;
+    
     private String subjectName;
    
     private Categories categoryId;
@@ -37,6 +38,17 @@ public class Subjects implements Serializable {
 
     public Subjects() {
     }
+
+    public Subjects(Integer subjectId, Boolean isActive, String subjectImage, Long price, String subjectName, Categories categoryId) {
+        this.subjectId = subjectId;
+        this.isActive = isActive;
+        this.subjectImage = subjectImage;
+        this.price = price;
+        this.subjectName = subjectName;
+        this.categoryId = categoryId;
+    }
+    
+    
 
     public Subjects(Integer subjectId) {
         this.subjectId = subjectId;
@@ -99,6 +111,14 @@ public class Subjects implements Serializable {
     @XmlTransient
     public List<Quizzes> getQuizzesList() {
         return quizzesList;
+    }
+
+    public Long getPrice() {
+        return price;
+    }
+
+    public void setPrice(Long price) {
+        this.price = price;
     }
 
     public void setQuizzesList(List<Quizzes> quizzesList) {

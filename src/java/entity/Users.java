@@ -29,7 +29,7 @@ public class Users implements Serializable {
     private List<ResetToken> resetTokenList;
     private List<Blogs> blogsList;
     private List<QuizResults> quizResultsList;
-    private Roles roleId;
+    private int roleId;
     private List<Feedback> feedbackList;
     private List<Payment> paymentList;
     private List<Quizzes> quizzesList;
@@ -188,11 +188,11 @@ public class Users implements Serializable {
         this.quizResultsList = quizResultsList;
     }
 
-    public Roles getRoleId() {
+    public int getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Roles roleId) {
+    public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
 

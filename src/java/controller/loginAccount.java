@@ -85,7 +85,7 @@ public class loginAccount extends HttpServlet {
             session.removeAttribute("loginAttempts");
             session.removeAttribute("lockTime");
             session.setAttribute("user", users);
-            response.sendRedirect("courses.jsp");
+            response.sendRedirect("home");
         }
     }
 

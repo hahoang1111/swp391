@@ -4,6 +4,9 @@
     Author     : Asus
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,7 +57,6 @@
         <!-- STYLESHEETS ============================================= -->
         <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <link class="skin" rel="stylesheet" type="text/css" href="assets/css/color/color-1.css">
-
     </head>
     <body id="bg">
         <div class="page-wraper">
@@ -78,9 +80,14 @@
                                             <option data-icon="flag flag-uk">English UK</option>
                                             <option data-icon="flag flag-us">English US</option>
                                         </select>
-                                    </li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    </li>login
+                                    <c:if test="${sessionScope.user == null}">
+                                        <li><a href="${pageContext.request.contextPath}/loginAccount">Login</a></li>
+                                        <li><a href="register.html">Register</a></li>
+                                        </c:if>
+                                        <c:if test="${sessionScope.user != null}">
+                                        <li><a href="${pageContext.request.contextPath}/profile">Xin chào ${sessionScope.user.fullName}</a></li>
+                                        </c:if>
                                 </ul>
                             </div>
                         </div>
@@ -166,7 +173,7 @@
                                     <li class="add-mega-menu"><a href="javascript:;">Our Courses <i class="fa fa-chevron-down"></i></a>
                                         <ul class="sub-menu add-menu">
                                             <li class="add-menu-left">
-                                                <h5 class="menu-adv-title">Our Courses</h5>
+                                                <h5 class="menu-adv-title"> LEARNING NOW!</h5>
                                                 <ul>
                                                     <li><a href="courses.html">Courses </a></li>
                                                     <li><a href="courses-details.html">Courses Details</a></li>
@@ -232,10 +239,12 @@
                 <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner3.jpg);">
                     <div class="container">
                         <div class="page-banner-entry">
-                            <h1 class="text-white">Our Courses</h1>
+                            <h1 class="text-white">LEARNING NOW!</h1>
                         </div>
                     </div>
                 </div>
+
+
                 <!-- Breadcrumb row -->
                 <div class="breadcrumb-row">
                     <div class="container">
@@ -247,41 +256,90 @@
                 </div>
                 <!-- Breadcrumb row END -->
                 <!-- inner page banner END -->
+
+
+
+
+
+
+
+
                 <div class="content-block">
                     <!-- About Us -->
+
+
                     <div class="section-area section-sp1">
+
+
                         <div class="container">
                             <div class="row">
+
                                 <div class="col-lg-3 col-md-4 col-sm-12 m-b30">
+                                    <!-- Ô nhập số lượng bản ghi -->
+                                    <form action="${pageContext.request.contextPath}/home" method="get" class="form-inline">
+
+                                        <div class="record-count-selector">
+                                            <label for="recordsPerPage">Records per page:</label>
+                                            <input type="number" id="recordsPerPage" name="pageSize" class="form-control ml-2" placeholder="Enter number" value="${requestScope.pageSize}" min="1" >
+                                        </div>
+
+                                        <!-- Form cho phép người dùng tùy chỉnh thông tin muốn hiển thị -->
+
+                                        <div class="subject-details-settings">
+                                            <h4>Subject Details</h4>
+                                            <form action="${pageContext.request.contextPath}/home" method="GET">
+                                                <div class="form-check" style="justify-content: flex-start;">
+                                                    <!-- Đánh dấu checked nếu người dùng không thay đổi mặc định -->
+                                                    <input type="checkbox" class="form-check-input" id="thumbnail" name="thumbnail" ${requestScope.thumbnail != null ? 'checked' : ''}>
+                                                    <label class="form-check-label" for="thumbnail">Thumbnail</label>
+                                                </div>
+                                                <div class="form-check" style="justify-content: flex-start;">
+                                                    <input type="checkbox" class="form-check-input" id="title" name="title" ${requestScope.title != null ? 'checked' : ''}>
+                                                    <label class="form-check-label" for="title">Title</label>
+                                                </div>
+                                                <div class="form-check" style="justify-content: flex-start;">
+                                                    <input type="checkbox" class="form-check-input" id="price" name="price" ${requestScope.price != null ? 'checked' : ''}>
+                                                    <label class="form-check-label" for="price">Price</label>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </form>
+
                                     <div class="widget courses-search-bx placeani">
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <label>Search Courses</label>
-                                                <input name="dzName" type="text" required class="form-control">
+
+                                                <form action="${pageContext.request.contextPath}/home" method="get">
+                                                    <input name="search" type="text" class="form-control" placeholder="Search for courses" value="${requestScope.search}">
+                                                    <button type="submit" class="btn btn-search">Search</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="widget widget_archive">
-                                        <h5 class="widget-title style-1">All Courses</h5>
-                                        <ul>
-                                            <li class="active"><a href="#">General</a></li>
-                                            <li><a href="#">IT & Software</a></li>
-                                            <li><a href="#">Photography</a></li>
-                                            <li><a href="#">Programming Language</a></li>
-                                            <li><a href="#">Technology</a></li>
-                                        </ul>
+                                        <h5 class="widget-title style-1">CATEGORY</h5>
+                                        <form action="${pageContext.request.contextPath}/home" method="get">
+                                            <select name="categoryID" onchange="this.form.submit()">
+                                                <option value="">All Categories</option> <!-- Option for All -->
+                                                <c:forEach items="${categories}" var="item">
+                                                    <option value="${item.categoryId}" ${item.categoryId == requestScope.categoryID ? 'selected' : ''}>
+                                                        ${item.categoryName}
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                        </form>
                                     </div>
-                                    <div class="widget">
-                                        <a href="#"><img src="assets/images/adv/adv.jpg" alt=""/></a>
-                                    </div>
+
+
                                     <div class="widget recent-posts-entry widget-courses">
-                                        <h5 class="widget-title style-1">Recent Courses</h5>
+                                        <h5 class="widget-title style-1">Featured subjects</h5>
                                         <div class="widget-post-bx">
                                             <div class="widget-post clearfix">
                                                 <div class="ttr-post-media"> <img src="assets/images/blog/recent-blog/pic1.jpg" width="200" height="143" alt=""> </div>
                                                 <div class="ttr-post-info">
                                                     <div class="ttr-post-header">
-                                                        <h6 class="post-title"><a href="#">Introduction EduChamp</a></h6>
+                                                        <h6 class="post-title"><a href="#">Introduction English</a></h6>
                                                     </div>
                                                     <div class="ttr-post-meta">
                                                         <ul>
@@ -315,271 +373,62 @@
                                 </div>
                                 <div class="col-lg-9 col-md-8 col-sm-12">
                                     <div class="row">
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic1.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
+                                        <c:forEach items="${requestScope.subjects}" var="item">
+                                            <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
+                                                <div class="cours-bx">
+                                                    <div class="action-box">
+                                                        <!-- Hiển thị Thumbnail nếu người dùng chọn -->
+                                                        <c:if test="${requestScope.thumbnail != null}">
+                                                            <img src="${item.getSubjectImage()}" alt="Thumbnail">
+                                                        </c:if>
+                                                        <a href="#" class="btn">Read More</a>
                                                     </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
+                                                    <div class="info-bx text-center">
+                                                        <!-- Hiển thị Title nếu người dùng chọn -->
+                                                        <c:if test="${requestScope.title != null}">
+                                                            <h5><a href="#">${item.getSubjectName()}</a></h5>
+                                                            </c:if>
+                                                        <!-- Hiển thị Category nếu người dùng chọn -->
+                                                        <c:if test="${requestScope.title != null}">
+                                                            <span>${item.getCategoryId().getCategoryName()}</span>
+                                                        </c:if>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic2.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
+                                                    <div class="cours-more-info">
+                                                        <!-- Hiển thị Price nếu người dùng chọn -->
+                                                        <c:if test="${requestScope.price != null}">
+                                                            <div class="price">
+                                                                <h5><fmt:formatNumber value="${item.price}" type="currency" currencySymbol="$"/></h5>
+                                                            </div>
+                                                        </c:if>
+                                                        <!-- Add the Register button next to the price -->
+                                                        <div class="register-btn">
+                                                            <a href="${pageContext.request.contextPath}/registerCourse?subjectId=${item.subjectId}" class="btn btn-register">Register</a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic3.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
+                                        </c:forEach>
+
+                                        <!-- Phân trang -->
+                                        <c:if test="${requestScope.total >= 0}">
+                                            <div class="col-lg-12 m-b20">
+                                                <div class="pagination-bx rounded-sm gray clearfix">
+                                                    <ul class="pagination">
+                                                        <c:forEach begin="1" end="${requestScope.total}" var="item">
+                                                            <li class="${item == request.page ? 'active' : ''}">
+                                                                <a href="${pageContext.request.contextPath}/home?page=${item}">${item}</a>
+                                                            </li>
+                                                        </c:forEach>
+                                                    </ul>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic4.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic5.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic6.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic7.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic8.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-4 col-sm-6 m-b30">
-                                            <div class="cours-bx">
-                                                <div class="action-box">
-                                                    <img src="assets/images/courses/pic9.jpg" alt="">
-                                                    <a href="#" class="btn">Read More</a>
-                                                </div>
-                                                <div class="info-bx text-center">
-                                                    <h5><a href="#">Introduction EduChamp – LMS plugin</a></h5>
-                                                    <span>Programming</span>
-                                                </div>
-                                                <div class="cours-more-info">
-                                                    <div class="review">
-                                                        <span>3 Review</span>
-                                                        <ul class="cours-star">
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li class="active"><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                            <li><i class="fa fa-star"></i></li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="price">
-                                                        <del>$190</del>
-                                                        <h5>$120</h5>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-12 m-b20">
-                                            <div class="pagination-bx rounded-sm gray clearfix">
-                                                <ul class="pagination">
-                                                    <li class="previous"><a href="#"><i class="ti-arrow-left"></i> Prev</a></li>
-                                                    <li class="active"><a href="#">1</a></li>
-                                                    <li><a href="#">2</a></li>
-                                                    <li><a href="#">3</a></li>
-                                                    <li class="next"><a href="#">Next <i class="ti-arrow-right"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        </c:if>
                                     </div>
                                 </div>
+
+
+
+
                             </div>
                         </div>
                     </div>
@@ -715,4 +564,3 @@
     </body>
 
 </html>
-
